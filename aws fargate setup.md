@@ -7,6 +7,10 @@
 
 Open vs code (as administrator)-if need
 
+ OR 
+
+AWS EC2 INSTANCE
+
 ```
 sudo apt install awscli -y
 ```
