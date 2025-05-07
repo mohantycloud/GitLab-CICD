@@ -164,10 +164,10 @@ sudo chown -R $(whoami) /etc/gitlab-runner
 cd /etc/gitlab-runner/custom-executor
 ```
 
-`vi prepare.sh`
+
 
 ```
-
+cat <<'EOF' > prepare
 #!/bin/bash
 
 TASK_ARN=$(aws ecs run-task \
@@ -179,29 +179,29 @@ TASK_ARN=$(aws ecs run-task \
   --output text)
 
 echo "$TASK_ARN" > /tmp/gitlab-task-arn
-
-
-```
-
-`vi run.sh`
+EOF
 
 ```
 
+
+
+```
+cat <<'EOF' > run
 #!/bin/bash
 echo "Job running in Fargate... waiting"
 sleep 60
-
+EOF
 ```
 
 
-`vi cleanup.sh`
+
 
 ```
-
+cat <<'EOF' > cleanup
 #!/bin/bash
 TASK_ARN=$(cat /tmp/gitlab-task-arn)
 aws ecs stop-task --cluster gitlab-runner-fargate --task $TASK_ARN
-
+EOF
 ```
 
 ```
