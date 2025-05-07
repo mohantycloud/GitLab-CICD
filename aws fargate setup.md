@@ -51,7 +51,7 @@ Create IAM Role for ECS Tasks
 `vi ecs-trust-policy.json`
 
 ```
-cat <<EOF > ecs-trust-policy.json
+
 {
   "Version": "2012-10-17",
   "Statement": [{
@@ -62,7 +62,7 @@ cat <<EOF > ecs-trust-policy.json
     "Action": "sts:AssumeRole"
   }]
 }
-EOF
+
 ```
 
 
