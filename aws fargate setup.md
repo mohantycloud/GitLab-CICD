@@ -169,15 +169,17 @@ cd /etc/gitlab-runner/custom-executor
 ```
 
 #!/bin/bash
+
 TASK_ARN=$(aws ecs run-task \
   --cluster gitlab-runner-fargate \
   --launch-type FARGATE \
-  --network-configuration "awsvpcConfiguration={subnets=[subnet-xxxxxx],securityGroups=[sg-xxxxxx],assignPublicIp=ENABLED}" \
+  --network-configuration "awsvpcConfiguration={subnets=[\"subnet-xxxxxx\"],securityGroups=[\"sg-xxxxxx\"],assignPublicIp=\"ENABLED\"}" \
   --task-definition gitlab-runner-task \
   --query 'tasks[0].taskArn' \
   --output text)
 
-echo $TASK_ARN > /tmp/gitlab-task-arn
+echo "$TASK_ARN" > /tmp/gitlab-task-arn
+
 
 ```
 
