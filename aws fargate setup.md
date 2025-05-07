@@ -18,10 +18,6 @@ aws --version
 ```
 
 ```
-aws --version
-```
-
-```
 aws configure
 ```
 
