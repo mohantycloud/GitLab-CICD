@@ -96,7 +96,7 @@ aws iam attach-role-policy \
 `vi task-definition.json`
 
 ```
-cat <<EOF > task-definition.json
+
 {
   "family": "gitlab-runner-task",
   "networkMode": "awsvpc",
@@ -119,7 +119,7 @@ cat <<EOF > task-definition.json
   }],
   "executionRoleArn": "arn:aws:iam::<YOUR_ACCOUNT_ID>:role/GitLabRunnerFargateRole"
 }
-EOF
+
 ```
 
 Register the task
