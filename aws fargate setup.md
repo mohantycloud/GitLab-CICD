@@ -214,3 +214,27 @@ nano /etc/gitlab-runner/config.toml
 ```
 gitlab-runner run
 ```
+
+
+#### 9. Test Your GitLab Runner on Fargate
+
+
+
+`.gitlab-ci.yml`
+
+
+```
+stages:
+  - test
+
+fargate_test_job:
+  stage: test
+  tags:
+    - fargate   # <- must match your GitLab Runner tag
+  script:
+    - echo "✅ Hello from GitLab CI/CD running on AWS Fargate!"
+    - uname -a
+    - sleep 10
+```
+
+Your Job Runs in AWS Fargate!
