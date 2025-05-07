@@ -75,3 +75,28 @@ sudo systemctl enable docker
 ```
 docker --version
 ```
+
+
+#### step-4 :- register runner on gitlab project
+
+Go to gitlab  > create a project (ex- my-first-proj)
+
+select project > CI/CD > Runners > New project runner  >  Tags = build-docker-runner   >  Create runner
+
+create `.gitlab-ci.yml`
+
+```
+
+build-job:
+  stage: build
+  tags:
+    - build-docker-runner
+  script:
+    - echo "Running on AWS Docker runner"
+```
+
+run it
+
+```
+gitlab-runner register  --url https://gitlab.com  --token glrt-ksYeA31tJ_G-7kQbw7Ld1286MQpwOjE1Z2VkZgp0OjMKdTpmcWVxOBg.01.1j0dd6wd2
+```
