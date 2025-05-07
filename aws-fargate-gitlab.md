@@ -140,20 +140,53 @@ gitlab-runner --version
 
 #### 6. Register Runner with GitLab
 
-Go to gitlab  > create a project (ex- my-awsfargate-proj)
+Go to gitlab  > create a project (ex- fargate-runner)
 
-select project > CI/CD > Runners > New project runner  >  Tags = fargate   >  Create runner
+select project > CI/CD > Runners > New project runner  >  Tags = skipp it   >  Create runner
 
 run it
 
 ```
-gitlab-runner register  --url https://gitlab.com  --token glrt-ksYeA31tJ_G-7kQbw7Ld1286MQpwOjE1Z2VkZgp0OjMKdTpmcWVxOBg.01.1j0dd6wd2
+sudo gitlab-runner register
 ```
 
-Enter an executor :- custom
+Executor: custom
+
+Name: fargate-runner
+
+URL: https://gitlab.com (or your self-hosted GitLab)
+
+Token: Use the registration token
 
 Check registered runners
 
 ```
 sudo gitlab-runner list
+```
+
+
+
+#### 7. Setup Custom Executor Scripts
+
+```
+sudo mkdir -p /etc/gitlab-runner/fargate
+sudo chown -R $(whoami) /etc/gitlab-runner
+cd /etc/gitlab-runner/fargate
+```
+
+`vi config.toml`
+
+```
+[[runners]]
+  name = "fargate-runner"
+  url = "https://gitlab.com/"
+  token = "glrt-MN5lI9qF5Qm733kZgGUtuW86MQpwOjE1Z243NQp0OjMKdTpmcWVxOBg.01.1j0mxw8rt"
+  executor = "custom"
+  builds_dir = "/builds"
+  shell = "bash"
+
+  [runners.custom]
+    prepare_exec = "/etc/gitlab-runner/fargate/prepare"
+    run_exec = "/etc/gitlab-runner/fargate/run"
+    cleanup_exec = "/etc/gitlab-runner/fargate/cleanup"
 ```
