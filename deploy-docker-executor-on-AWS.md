@@ -83,6 +83,18 @@ Go to gitlab  > create a project (ex- my-first-proj)
 
 select project > CI/CD > Runners > New project runner  >  Tags = build-docker-runner   >  Create runner
 
+run it
+
+```
+gitlab-runner register  --url https://gitlab.com  --token glrt-ksYeA31tJ_G-7kQbw7Ld1286MQpwOjE1Z2VkZgp0OjMKdTpmcWVxOBg.01.1j0dd6wd2
+```
+
+Manually verify that the runner is available to pick up jobs
+
+```
+gitlab-runner run
+```
+
 create `.gitlab-ci.yml`
 
 ```
@@ -95,8 +107,4 @@ build-job:
     - echo "Running on AWS Docker runner"
 ```
 
-run it
 
-```
-gitlab-runner register  --url https://gitlab.com  --token glrt-ksYeA31tJ_G-7kQbw7Ld1286MQpwOjE1Z2VkZgp0OjMKdTpmcWVxOBg.01.1j0dd6wd2
-```
