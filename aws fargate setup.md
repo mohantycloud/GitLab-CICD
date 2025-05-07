@@ -251,7 +251,7 @@ fargate_test_job:
   tags:
     - fargate   # <- must match your GitLab Runner tag
   script:
-    - echo "✅ Hello from GitLab CI/CD running on AWS Fargate!"
+    - echo "Hello from GitLab CI/CD running on AWS Fargate!"
     - uname -a
     - sleep 10
 ```
