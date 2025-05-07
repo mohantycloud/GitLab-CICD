@@ -58,6 +58,7 @@ run it
 gitlab-runner register  --url https://gitlab.com  --token glrt-ksYeA31tJ_G-7kQbw7Ld1286MQpwOjE1Z2VkZgp0OjMKdTpmcWVxOBg.01.1j0dd6wd2
 ```
 
+Enter an executor :- shell
 
 Check registered runners
 
