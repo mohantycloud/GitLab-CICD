@@ -24,13 +24,13 @@ Generate  `Access key`
 #### 2. Install GitLab Runner
 
 ```
-curl -L https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64 \
-  -o /usr/local/bin/gitlab-runner
+sudo curl -L https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64 -o /usr/local/bin/gitlab-runner
+
 ```
 
 
 ```
-chmod +x /usr/local/bin/gitlab-runner
+sudo chmod +x /usr/local/bin/gitlab-runner
 ```
 
 ```
