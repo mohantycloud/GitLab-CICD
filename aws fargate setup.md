@@ -128,6 +128,7 @@ Register the task
 aws ecs register-task-definition \
   --cli-input-json file://task-definition.json
 ```
+`press :- q`
 
 Create a CloudWatch log group
 
