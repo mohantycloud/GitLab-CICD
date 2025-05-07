@@ -11,6 +11,11 @@
 #### step-1 :- create ec2 instance
 
 ami > ubuntu
+
 key-pair > test1
+
 sg > mysg(all-traffic)
+
 connect
+
+#### step-2 :- crea
