@@ -141,3 +141,76 @@ sudo gitlab-runner list
 ```
 
 #### 6. Setup Custom Executor Scripts
+
+```
+mkdir -p /etc/gitlab-runner/custom-executor
+cd /etc/gitlab-runner/custom-executor
+```
+
+`vi prepare.sh`
+
+```
+cat <<'EOF' > prepare
+#!/bin/bash
+TASK_ARN=$(aws ecs run-task \
+  --cluster gitlab-runner-fargate \
+  --launch-type FARGATE \
+  --network-configuration "awsvpcConfiguration={subnets=[subnet-xxxxxx],securityGroups=[sg-xxxxxx],assignPublicIp=ENABLED}" \
+  --task-definition gitlab-runner-task \
+  --query 'tasks[0].taskArn' \
+  --output text)
+
+echo $TASK_ARN > /tmp/gitlab-task-arn
+EOF
+```
+
+`vi run.sh`
+
+```
+cat <<'EOF' > run
+#!/bin/bash
+echo "Job running in Fargate... waiting"
+sleep 60
+EOF
+```
+
+
+`vi cleanup.sh`
+
+```
+cat <<'EOF' > cleanup
+#!/bin/bash
+TASK_ARN=$(cat /tmp/gitlab-task-arn)
+aws ecs stop-task --cluster gitlab-runner-fargate --task $TASK_ARN
+EOF
+```
+
+```
+chmod +x prepare run cleanup
+```
+
+#### 7. Configure config.toml
+
+```
+nano /etc/gitlab-runner/config.toml
+```
+
+
+```
+[[runners]]
+  name = "fargate-runner"
+  url = "https://gitlab.com/"
+  token = "REPLACE_WITH_YOUR_TOKEN"
+  executor = "custom"
+  [runners.custom]
+    config_exec = "/etc/gitlab-runner/custom-executor/prepare"
+    run_exec = "/etc/gitlab-runner/custom-executor/run"
+    cleanup_exec = "/etc/gitlab-runner/custom-executor/cleanup"
+```
+
+
+#### 8. Start the Runner
+
+```
+gitlab-runner run
+```
