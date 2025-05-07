@@ -193,7 +193,9 @@ sleep 60
 EOF
 ```
 
-
+```
+chmod +x run.sh
+```
 
 
 ```
@@ -223,6 +225,7 @@ nano /etc/gitlab-runner/config.toml
   executor = "custom"
   [runners.custom]
     config_exec = "/etc/gitlab-runner/custom-executor/prepare"
+    prepare_exec = "/etc/gitlab-runner/custom/prepare
     run_exec = "/etc/gitlab-runner/custom-executor/run"
     cleanup_exec = "/etc/gitlab-runner/custom-executor/cleanup"
 ```
