@@ -190,3 +190,69 @@ cd /etc/gitlab-runner/fargate
     run_exec = "/etc/gitlab-runner/fargate/run"
     cleanup_exec = "/etc/gitlab-runner/fargate/cleanup"
 ```
+
+
+
+`vi prepare`
+
+
+```
+#!/bin/bash
+set -e
+
+echo "[prepare] Starting ECS task for job: $CI_JOB_ID"
+
+TASK_ARN=$(aws ecs run-task \
+  --cluster gitlab-runner-cluster \
+  --launch-type FARGATE \
+  --network-configuration "awsvpcConfiguration={subnets=[subnet-00fdb2415ceeca4ee],securityGroups=[sg-03291c1a2530f9496],assignPublicIp=ENABLED}" \
+  --task-definition gitlab-runner-task \
+  --overrides '{"containerOverrides": [{"name": "gitlab-job", "environment": [{"name": "CI_JOB_ID", "value": "'"$CI_JOB_ID"'"}]}]}' \
+  --query 'tasks[0].taskArn' \
+  --output text)
+
+echo "$TASK_ARN" > /tmp/task_arn_"$CI_JOB_ID"
+
+echo "[prepare] Task started: $TASK_ARN"
+```
+
+
+`vi run`
+
+
+```
+#!/bin/bash
+set -e
+
+TASK_ARN=$(cat /tmp/task_arn_"$CI_JOB_ID")
+
+echo "[run] Waiting for task $TASK_ARN to finish..."
+
+aws ecs wait tasks-stopped \
+  --cluster gitlab-runner-cluster \
+  --tasks "$TASK_ARN"
+
+echo "[run] Task $TASK_ARN finished"
+```
+
+`vi cleanup`
+
+```
+#!/bin/bash
+set -e
+
+TASK_ARN_FILE="/tmp/task_arn_$CI_JOB_ID"
+
+if [ -f "$TASK_ARN_FILE" ]; then
+  TASK_ARN=$(cat "$TASK_ARN_FILE")
+  echo "[cleanup] Cleaning up task: $TASK_ARN"
+
+  # Uncomment below if you want to force stop task
+  # aws ecs stop-task --cluster gitlab-runner-cluster --task "$TASK_ARN"
+
+  rm -f "$TASK_ARN_FILE"
+else
+  echo "[cleanup] No task found for cleanup."
+fi
+```
+
