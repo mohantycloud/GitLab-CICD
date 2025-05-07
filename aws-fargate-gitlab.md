@@ -256,3 +256,20 @@ else
 fi
 ```
 
+Ensure all scripts are executable
+
+```
+chmod +x /etc/gitlab-runner/fargate/*
+```
+
+#### Test with a simple .gitlab-ci.yml
+
+```
+stages:
+  - test
+
+fargate-job:
+  stage: test
+  script:
+    - echo "Hello from AWS Fargate!"
+```
