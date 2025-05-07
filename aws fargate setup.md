@@ -10,6 +10,10 @@ sudo apt install awscli -y
 ```
 
 ```
+aws --version
+```
+
+```
 aws configure
 ```
 
