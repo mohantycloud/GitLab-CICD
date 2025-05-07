@@ -159,7 +159,8 @@ sudo gitlab-runner list
 #### 6. Setup Custom Executor Scripts
 
 ```
-mkdir -p /etc/gitlab-runner/custom-executor
+sudo mkdir -p /etc/gitlab-runner/custom-executor
+sudo chown -R $(whoami) /etc/gitlab-runner
 cd /etc/gitlab-runner/custom-executor
 ```
 
