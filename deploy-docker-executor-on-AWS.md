@@ -95,6 +95,10 @@ Manually verify that the runner is available to pick up jobs
 gitlab-runner run
 ```
 
+
+#### step-5 :- Test it
+
+
 create `.gitlab-ci.yml`
 
 ```
@@ -108,3 +112,4 @@ build-job:
 ```
 
 
+=========END===================
