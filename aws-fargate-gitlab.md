@@ -273,3 +273,16 @@ fargate-job:
   script:
     - echo "Hello from AWS Fargate!"
 ```
+
+
+```
+Optional: Monitor & Debug
+Use CloudWatch Logs for the ECS tasks
+
+Use aws ecs describe-tasks to check task status
+
+Enable job logs in GitLab runner output
+```
+
+
+===========END=============
