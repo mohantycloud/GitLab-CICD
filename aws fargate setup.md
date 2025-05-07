@@ -87,7 +87,8 @@ aws iam attach-role-policy \
 ```
 aws iam attach-role-policy \
   --role-name GitLabRunnerFargateRole \
-  --policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerServiceFullAccess
+  --policy-arn arn:aws:iam::aws:policy/AmazonECS_FullAccess
+
 ```
 
 #### 4. Create ECS Task Definition
