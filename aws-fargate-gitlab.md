@@ -97,7 +97,7 @@ aws iam attach-role-policy \
       "logDriver": "awslogs",
       "options": {
         "awslogs-group": "/ecs/gitlab-runner",
-        "awslogs-region": "us-east-1",
+        "awslogs-region": "ap-south-1",
         "awslogs-stream-prefix": "ecs"
       }
     }
