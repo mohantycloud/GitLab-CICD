@@ -19,6 +19,8 @@ aws --version
 aws configure
 ```
 
+Generate `Access key`
+
 #### 2. Install GitLab Runner
 
 ```
