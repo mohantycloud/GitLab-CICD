@@ -3,6 +3,8 @@
 
 #### 1. Prepare CLI Tools and Environment
 
+`https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html`
+
 ```
 sudo apt install awscli -y
 ```
