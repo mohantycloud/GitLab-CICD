@@ -5,14 +5,16 @@
 
 `https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html`
 
-Open vs code (as administrator)-if need
 
- OR 
-
-AWS EC2 INSTANCE
+AWS EC2 INSTANCE(UBUNTU)
 
 ```
-sudo apt install awscli -y
+sudo apt update
+sudo apt install unzip curl -y
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+aws --version
 ```
 
 ```
