@@ -224,8 +224,8 @@ nano /etc/gitlab-runner/config.toml
   token = "REPLACE_WITH_YOUR_TOKEN"
   executor = "custom"
   [runners.custom]
-    config_exec = "/etc/gitlab-runner/custom-executor/prepare"
-    prepare_exec = "/etc/gitlab-runner/custom/prepare
+    config_exec = "/etc/gitlab-runner/custom-executor/config"
+    prepare_exec = "/etc/gitlab-runner/custom/prepare"
     run_exec = "/etc/gitlab-runner/custom-executor/run"
     cleanup_exec = "/etc/gitlab-runner/custom-executor/cleanup"
 ```
