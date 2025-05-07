@@ -5,7 +5,7 @@
 
 `https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html`
 
-Open powershell as administrator
+Open vs code (as administrator)-if need
 
 ```
 sudo apt install awscli -y
