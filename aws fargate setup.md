@@ -82,7 +82,9 @@ Attach policies
 aws iam attach-role-policy \
   --role-name GitLabRunnerFargateRole \
   --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+```
 
+```
 aws iam attach-role-policy \
   --role-name GitLabRunnerFargateRole \
   --policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerServiceFullAccess
