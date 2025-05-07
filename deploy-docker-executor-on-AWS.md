@@ -18,4 +18,23 @@ sg > mysg(all-traffic)
 
 connect
 
-#### step-2 :- crea
+#### step-2 :- install gitlab-runner
+
+Follow `https://docs.gitlab.com/runner/install/linux-repository/`
+
+```
+sudo apt update
+```
+
+Add the official GitLab repository
+
+```
+curl -L "https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh" | sudo bash
+```
+
+Install the latest version of GitLab Runner
+
+```
+sudo apt install gitlab-runner
+```
+
