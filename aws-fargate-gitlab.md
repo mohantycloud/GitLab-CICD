@@ -120,3 +120,40 @@ Create a CloudWatch log group
 ```
 aws logs create-log-group --log-group-name /ecs/gitlab-runner
 ```
+
+
+#### 5. Install GitLab Runner with Custom Executor
+
+```
+sudo curl -L https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64 -o /usr/local/bin/gitlab-runner
+
+```
+
+
+```
+sudo chmod +x /usr/local/bin/gitlab-runner
+```
+
+```
+gitlab-runner --version
+```
+
+#### 6. Register Runner with GitLab
+
+Go to gitlab  > create a project (ex- my-awsfargate-proj)
+
+select project > CI/CD > Runners > New project runner  >  Tags = fargate   >  Create runner
+
+run it
+
+```
+gitlab-runner register  --url https://gitlab.com  --token glrt-ksYeA31tJ_G-7kQbw7Ld1286MQpwOjE1Z2VkZgp0OjMKdTpmcWVxOBg.01.1j0dd6wd2
+```
+
+Enter an executor :- custom
+
+Check registered runners
+
+```
+sudo gitlab-runner list
+```
